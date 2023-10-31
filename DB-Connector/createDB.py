@@ -56,7 +56,7 @@ def InputRestaurantData():
     rows = sheet.nrows
     
     insert_restaurant_query = """ INSERT INTO 
-    Restaurant(id, name, address, distance_miles, type, average_price_score) VALUES (%s, %s, %s, %s, %s, %s) """
+    Restaurant(name, address, distance_miles, type, average_price_score) VALUES (%s, %s, %s, %s, %s) """
     
     RestaurantData = []
     for r in range(1, rows):
