@@ -1,0 +1,81 @@
+menu_id,menu_item,allergens,cook_time,food_type
+1,Margherita Pizza,"Dairy, Gluten",15,Italian
+2,Spaghetti Carbonara,"Dairy, Eggs",20,Italian
+3,Eggplant Parmesan,"Dairy, Gluten",18,Italian
+4,Tiramisu,"Dairy, Eggs",12,Italian
+5,Risotto Milanese,Dairy,25,Italian
+6,General Tso's Chicken,"Gluten, Nuts",20,Chinese
+7,Vegetable Fried Rice,Soy,15,Chinese
+8,Kung Pao Shrimp,"Nuts, Shellfish",22,Chinese
+9,Dim Sum Sampler,"Gluten, Soy",30,Chinese
+10,Fortune Cookies,Gluten,10,Chinese
+11,Chicken Enchiladas,"Dairy, Gluten",18,Mexican
+12,Beef Tacos,"Gluten, Dairy",12,Mexican
+13,Shrimp Quesadilla,"Dairy, Shellfish",15,Mexican
+14,Guacamole,None,10,Mexican
+15,Churros,Gluten,14,Mexican
+16,Vegetarian Lasagna,"Dairy, Gluten",25,Vegetarian
+17,Spinach and Feta Stuffed Mushrooms,Dairy,18,Vegetarian
+18,Falafel Wrap,"Gluten, Nuts",15,Vegetarian
+19,Caprese Salad,Dairy,10,Vegetarian
+20,Veggie Stir-Fry,"Soy, Gluten",20,Vegetarian
+21,Ribeye Steak,None,30,Steakhouse
+22,Filet Mignon,None,25,Steakhouse
+23,T-Bone Steak,None,32,Steakhouse
+24,Prime Rib,None,28,Steakhouse
+25,Porterhouse,None,35,Steakhouse
+26,Grilled Salmon,None,25,Seafood
+27,Lobster Bisque,"Dairy, Gluten",15,Seafood
+28,Shrimp Scampi,"Shellfish, Dairy",20,Seafood
+29,Seafood Paella,"Shellfish, Gluten",30,Seafood
+30,Grilled Mahi-Mahi,None,22,Seafood
+31,Greek Salad,"Dairy, Nuts",12,Greek
+32,Moussaka,"Dairy, Beef",25,Greek
+33,Souvlaki,None,20,Greek
+34,Tzatziki,Dairy,10,Greek
+35,Baklava,Nuts,18,Greek
+36,Bulgogi,"Soy, Sesame",22,Korean
+37,Kimchi Fried Rice,"Gluten, Soy",18,Korean
+38,Japchae,"Soy, Nuts",15,Korean
+39,Bibimbap,Soy,20,Korean
+40,Korean BBQ Ribs,None,30,Korean
+41,Pulled Pork Sandwich,"Gluten, Dairy",15,American
+42,BBQ Ribs,None,20,American
+43,Brisket Platter,None,25,American
+44,BBQ Chicken,None,18,American
+45,Cornbread,Gluten,12,American
+46,Pad Thai,"Peanuts, Shellfish, Gluten",25,Thai
+47,Green Curry,"Nuts, Gluten",20,Thai
+48,Tom Yum Soup,Shellfish,15,Thai
+49,Mango Sticky Rice,Dairy,10,Thai
+50,Som Tum Salad,Peanuts,18,Thai
+51,Coq au Vin,"Dairy, Wine",30,French
+52,Croque Monsieur,"Dairy, Gluten",18,French
+53,Ratatouille,None,20,French
+54,Crème Brûlée,Dairy,12,French
+55,Escargot,"Dairy, Shellfish",15,French
+56,Sashimi Platter,"Fish, Soy",22,Sushi
+57,California Roll,"Crab, Avocado",16,Sushi
+58,Dragon Roll,"Eel, Avocado",20,Sushi
+59,Nigiri Sushi,"Fish, Soy",15,Sushi
+60,Miso Soup,Soy,10,Sushi
+61,Tempura Shrimp,"Gluten, Shellfish",18,Japanese
+62,Teriyaki Chicken,Soy,15,Japanese
+63,Udon Noodle Soup,"Gluten, Soy",20,Japanese
+64,Okonomiyaki,"Gluten, Eggs",22,Japanese
+65,Matcha Ice Cream,Dairy,10,Japanese
+66,Chicken Tikka,"Dairy, Nuts",25,Indian
+67,Vegetable Biryani,"Gluten, Nuts",30,Indian
+68,Naan Bread,"Gluten, Dairy",18,Indian
+69,Mango Lassi,Dairy,12,Indian
+70,Paneer Tikka,"Dairy, Nuts",20,Indian
+71,Hamburger,"Dairy, Gluten",15,American
+72,Hot Dog,Gluten,10,American
+73,Fried Chicken,Gluten,18,American
+74,Apple Pie,"Dairy, Gluten",20,American
+75,Clam Chowder,"Shellfish, Dairy",22,American
+76,Sushi Burrito,"Fish, Soy",18,Fusion
+77,Kimchi Tacos,"Gluten, Soy",15,Fusion
+78,Pad Thai Pizza,"Peanuts, Gluten",20,Fusion
+79,Curry Tacos,"Dairy, Nuts",22,Fusion
+80,Sushi Burger,"Fish, Gluten",25,Fusion
