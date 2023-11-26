@@ -29,10 +29,11 @@ print(str)
 
 str = mm.deleteUser("jim@gmail.com", "jim123")
 print(str)
-'''
+
 str = mm.setUserRestRating("2", "146", "3.0")
 print(str)
 
 
 str = mm.updateRestaurantRating()
 print(str)
+'''
