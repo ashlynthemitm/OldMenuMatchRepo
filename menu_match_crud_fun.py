@@ -6,12 +6,8 @@ import mysql.connector
 from flask import Flask
  
 app = Flask(__name__) 
- 
-@app.route('/call-python-function') 
-def call_python_function(): 
-    # Your Python function code here 
-    return {'result': 'success'}
 
+@app.route('/get-all-menus') 
 def getAllMenus():
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
@@ -33,9 +29,9 @@ def getAllMenus():
     '''
     cursor.close()
     conn.close()
-    return records
+    return {'records' : records}
 
-
+@app.route('/get-all-restaurants') 
 def getAllRestaurants():
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
@@ -45,10 +41,10 @@ def getAllRestaurants():
     records = cursor.fetchall()
     cursor.close()
     conn.close()
-    return records
+    return {'records': records}
   
 
-
+@app.route('/filter-restaurants') 
 def filterRestaurantBasedOn(name:string, distance:string, type:string, price:string):
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
@@ -72,11 +68,11 @@ def filterRestaurantBasedOn(name:string, distance:string, type:string, price:str
     records = cursor.fetchall()
     cursor.close()
     conn.close()
-    return records
+    return {'records': records}
 
 #filterRestaurantBasedOn("", "", "Foood", "")
-
-    
+  
+@app.route('/filter-menus') 
 def filterMenusBasedOn(menu_item:string, allergies:List, wait:string, type:string): #takes a list of allergens
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
@@ -128,8 +124,9 @@ def filterMenusBasedOn(menu_item:string, allergies:List, wait:string, type:strin
 
     cursor.close()
     conn.close()
-    return records
+    return {'records' : records}
 
+@app.route('/get-user-pass') 
 def getUserPassCombo(email:string, passw:string):
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
@@ -142,15 +139,16 @@ def getUserPassCombo(email:string, passw:string):
     if cursor.rowcount > 0:
         cursor.close()
         conn.close()
-        return True, records[0]
+        return {'success' : True, 'records' : records[0]}
     
     else:
         cursor.close()
         conn.close()
-        return False, []
+        return {'success' : False, 'records' : []}
             
     #return records
 
+@app.route('/check-user-created')
 def checkUserCreated(email:string):
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
@@ -164,10 +162,10 @@ def checkUserCreated(email:string):
         cursor.close()
         conn.close()
         print("This email already has an account")
-        return True, records
-    return False, ""
+        return {'success' : True, 'records' :records}
+    return {'success' : False, 'records' : ""}
     
-
+@app.route('/create-user')
 def createUser(name:string, email:string, passw:string, allergens:string):
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
@@ -186,11 +184,11 @@ def createUser(name:string, email:string, passw:string, allergens:string):
     conn.close()
 
     if(num > 0):
-        return "User created", records
+        return {'success' : True, 'records' : records}
     else:
-        return "User not created", "empty"
+        return {'success' : False, 'records' : []}
     
-
+@app.route('/update-user')
 def updateUser(email:string, allergens:List):
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
@@ -208,11 +206,11 @@ def updateUser(email:string, allergens:List):
     #print(tempBool, record)
 
     if(num > 0):
-        return "User updated", record
+        return {'success' : True, 'records': record}
     else:
-        return "User not updated", ""
+        return {'success' : False, 'records': ""}
 
-
+@app.route('/delete-user')
 def deleteUser(email:string, passw:string):
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
@@ -224,10 +222,11 @@ def deleteUser(email:string, passw:string):
     conn.close()
 
     if(num > 0):
-        return "User deleted"
+        return {'success' : True}
     else:
-        return "User not deleted"
+        return {'success' : False}
 
+@app.route('/set-user-rest-rating')
 def setUserRestRating(user_id:string, rest_id:string, rating:string):
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
@@ -255,11 +254,12 @@ def setUserRestRating(user_id:string, rest_id:string, rating:string):
     conn.close()
 
     if(num > 0):
-        return "rating set"
+        return {'success' : True}
     else:
-        return "rating not set"
+        return {'success' : False}
     #return "Account Created", records[0]
 
+@app.route('/update-restaurant-rating')
 def updateRestaurantRating():
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
@@ -272,9 +272,9 @@ def updateRestaurantRating():
     conn.close()
 
     if(num > 0):
-        return "rating updated"
+        return {'success' : True}
     else:
-        return "rating not updated"
+        return {'success' : False}
 
 
 

@@ -25,7 +25,6 @@ User updated [(6, 'Jim Ellis', 'jim@gmail.com', 'jim123', 0, 'Dairy, Nuts')]
 Delete User: this returns 1 value, says user deleted or not deleted
 User deleted
 
-
 Rating Set and Average Rating Updated go together:
 
 mm.setUserRestRating("3", "147", "3.5") - updates the serves table with a new record
