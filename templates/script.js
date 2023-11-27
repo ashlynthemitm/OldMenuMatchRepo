@@ -30,23 +30,16 @@ searchForm.addEventListener('submit', (e) => {
     e.preventDefault();
 })
 
-
-function changePage(page) {
-    // You can load content dynamically based on the page parameter
-    // For simplicity, let's just update the content div with a simple message
-    var contentDiv = document.getElementById('content');
-    
-    switch (page) {
-        case 'home':
-            contentDiv.innerHTML = '<h2>Welcome to the Home Page!</h2>';
-            break;
-        case 'about':
-            contentDiv.innerHTML = '<h2>About Us</h2><p>We are a fantastic company!</p>';
-            break;
-        case 'contact':
-            contentDiv.innerHTML = '<h2>Contact Us</h2><p>Reach out to us at contact@example.com</p>';
-            break;
-        default:
-            contentDiv.innerHTML = '<h2>Page not found</h2>';
-    }
-}
+//asynchronous request to server
+fetch('/api/data')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('HTTP error! Status: ${response.status}');
+        }
+        return response.json();
+    })
+    .then(data => {
+        //update html with data from server
+        document.getElementById('result').innerText = data.message;
+    })
+    .catch(error => console.error('Error:', error));
