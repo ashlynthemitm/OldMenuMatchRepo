@@ -3,6 +3,14 @@ import string
 from typing import Dict, List, Tuple
 import mysql.connector
 
+from flask import Flask
+ 
+app = Flask(__name__) 
+ 
+@app.route('/call-python-function') 
+def call_python_function(): 
+    # Your Python function code here 
+    return {'result': 'success'}
 
 def getAllMenus():
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
@@ -77,15 +85,18 @@ def filterMenusBasedOn(menu_item:string, allergies:List, wait:string, type:strin
         filterquery = filterquery + " m.menu_item = " + menu_item
     else:
         if(len(allergies) > 0):
-            algs = '('
+            algs = "" #'\''
             i = 0
             while(i < len(allergies)):
-                algs = algs + "\""+ allergies[i] + "\","
+                temp = " m.allergens NOT LIKE \'%" + allergies[i] + "%\'"
+                algs = algs + temp
                 i+=1
-            algs = algs[0:-1] + ')'
+                if(i < len(allergies)):
+                    algs = algs + " AND"
+            #algs = algs[0:-1] + '\''
             print(algs)
-
-            filterquery = filterquery + " m.allergens NOT IN " + algs
+            #" m.allergens NOT LIKE " +
+            filterquery = filterquery + algs
         if(wait != ""):
             if(len(allergies) > 0):
                 filterquery = filterquery + " AND"
@@ -94,6 +105,8 @@ def filterMenusBasedOn(menu_item:string, allergies:List, wait:string, type:strin
             if(len(allergies) > 0 or wait != ""):
                 filterquery = filterquery + " AND"
             filterquery = filterquery + " m.food_type = " + type
+
+        print(filterquery)
 
     cursor.execute(filterquery)
     records = cursor.fetchall()
@@ -120,7 +133,7 @@ def filterMenusBasedOn(menu_item:string, allergies:List, wait:string, type:strin
 def getUserPassCombo(email:string, passw:string):
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
-    selectquery = "SELECT email, password FROM user WHERE email = \'" + email +"\' AND password = \'" + passw + "\'"
+    selectquery = "SELECT name, email, password, allergens FROM user WHERE email = \'" + email +"\' AND password = \'" + passw + "\'"
     print(selectquery)
     cursor.execute(selectquery)
     
@@ -141,23 +154,25 @@ def getUserPassCombo(email:string, passw:string):
 def checkUserCreated(email:string):
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
-    selectquery = "SELECT email FROM user WHERE email = \'" + email + "\'"
+    selectquery = "SELECT * FROM user WHERE email = \'" + email + "\'"
 
-    num = cursor.execute(selectquery)
+    cursor.execute(selectquery)
+    records = cursor.fetchall()
+    num = cursor.rowcount
     
-    if cursor.rowcount > 0:
-        records = cursor.fetchall()
+    if num > 0:
         cursor.close()
         conn.close()
         print("This email already has an account")
-        return True
-    return False
+        return True, records
+    return False, ""
     
 
 def createUser(name:string, email:string, passw:string, allergens:string):
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
-    if(checkUserCreated(email)):
+    tempBool, record = checkUserCreated(email)
+    if(tempBool):
         return "This email has an account", ""
     
     createquery = "INSERT INTO user (name, email, password, isAdmin, allergens) VALUES (%s, %s, %s, %s, %s)"
@@ -171,7 +186,7 @@ def createUser(name:string, email:string, passw:string, allergens:string):
     conn.close()
 
     if(num > 0):
-        return "User created", num
+        return "User created", records
     else:
         return "User not created", "empty"
     
@@ -189,10 +204,13 @@ def updateUser(email:string, allergens:List):
     cursor.close()
     conn.close()
 
+    tempBool, record = checkUserCreated(email)
+    #print(tempBool, record)
+
     if(num > 0):
-        return "User updated"
+        return "User updated", record
     else:
-        return "User not updated"
+        return "User not updated", ""
 
 
 def deleteUser(email:string, passw:string):
