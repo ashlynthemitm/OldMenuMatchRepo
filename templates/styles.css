@@ -38,7 +38,7 @@ header {
 
 .navigation a {
     position: relative;
-    font-size: 1.1em;
+    font-size: 1.3em;
     color: #333;
     text-decoration: none;
     font-weight: 500;
@@ -67,9 +67,6 @@ header {
     width: 130px;
     height: 50px;
     background: transparent;
-    /*border: 2px solid #ffff;
-    outline: none;
-    border-radius: 6px; */
     background-color: #ff6f61;
     border-color: #333;
     border-radius: 8px;
@@ -257,7 +254,6 @@ header {
 }
 
 .home {
-    background-image: url("MenuMatch\templates\image-from-rawpixel-id-5926993-jpeg.jpg");
     color: #333;
     position: absolute;
     text-align: center;
@@ -290,7 +286,7 @@ header {
     border-radius: 8px;
     font-size: 16px;
     padding: 12px;
-    width: 300px;
+    width: 350px;
     margin: 25px 0 15px;
   }
 
@@ -300,10 +296,52 @@ header {
     border-color: #333;
     border-radius: 8px;
     color: #333;
-    font-size: 16px;
+    font-size: 18px;
     padding: 12px 20px;
     transition: background-color 0.2s;
 }
+
+.dropdown {
+    position: absolute;
+    display: inline-block;
+    left: -10px;
+    top: 75%;
+    
+  }
+
+  .dropbtn {
+    cursor: pointer;
+    background-color: #ffb6b9;
+    border-color: #333;
+    border-radius: 8px;
+    color: #333;
+    padding: 8px 20px;
+    font-size: 18px;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    cursor: pointer;
+    background-color: #ffb6b9;
+    border-color: #333;
+    border-radius: 8px;
+    color: #333;
+    padding: 20px;
+    z-index: 1;
+    min-width: 120px;
+    font-size: 20px;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown-content label {
+    display: block;
+    margin-bottom: 8px;
+  }
+
 
 /* Services page  */
 .services {
@@ -350,7 +388,7 @@ header {
 }
 
 .services-col:hover {
-    box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.466);
 }
 
 /*Contact Us page*/
@@ -388,4 +426,31 @@ header {
     font-size: 16px;
     padding: 8px 20px;
     transition: background-color 0.2s;
+}
+
+/*Reviews page*/
+.reviews {
+    width: 80%;
+    margin-top: 40%;
+    padding: 50px 0;
+}
+
+.reviews h1 {
+    font-size: 50px;
+    font-weight: 600;
+    text-align: center;
+    margin: auto;
+}
+
+.reviews-left {
+    flex-basis: 65%;
+}
+
+.reviews-left img {
+    width: 100%;
+}
+.reviews-left h2 {
+    color: #333;
+    font-weight: 600;
+    margin: 30px 0;
 }
