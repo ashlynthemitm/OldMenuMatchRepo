@@ -1,3 +1,5 @@
+//one of the event listeners isn't working, allegedly it's register-link, the star rating isn't working because of it, idk what is wrong with it
+
 //login and register starts
 const wrapper = document.querySelector('.wrapper');
 const loginLink = document.querySelector('.login-link');
@@ -22,11 +24,13 @@ btnPopup.addEventListener('click', ()=> {
 iconClose.addEventListener('click', ()=> {
     wrapper.classList.remove('active-popup');
 });
-
 //login and register ends
 
+console.log('Wrapper:', wrapper);
+console.log('Register Link:', registerLink);
+
 //star ratings
-const stars = document.querySelectorAll(".stars ion-icon");
+const stars = document.querySelectorAll('.stars ion-icon');
 
 //loop through stars NodeList
 stars.forEach((star, index1) => {

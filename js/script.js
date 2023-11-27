@@ -1,3 +1,5 @@
+//not in use but it's in the github so idk if i should delete it
+//login and register starts
 const wrapper = document.querySelector('.wrapper');
 const loginLink = document.querySelector('.login-link');
 const registerLink = document.querySelector('.register-link');
@@ -21,12 +23,7 @@ btnPopup.addEventListener('click', ()=> {
 iconClose.addEventListener('click', ()=> {
     wrapper.classList.remove('active-popup');
 });
-
-//listener for search
-searchForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-})
-
+//login and register ends
 
 //star ratings
 const stars = document.querySelectorAll(".stars ion-icon");
