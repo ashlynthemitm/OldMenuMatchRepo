@@ -4,6 +4,7 @@ all_menus = mm.getAllMenus()
 
 print(all_menus)
 
+
 all_rests = mm.getAllRestaurants()
 
 for row in all_rests:
