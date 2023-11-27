@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+    th{ 
+        cursor: pointer;
+        color:#fff;
+            }
+</style>
+
+<!--labels at the top of the table-->
+<table class="table table-striped">
+    <tr  class="bg-info">
+        <th>ID</th>
+        <th>Menu Item</th>
+        <th>Allergen</th>
+        <th>Cook Time</th>
+        <th>Food Type</th>
+        <th>Restaurant ID</th>
+        <th>Restaurant ID</th>
+        <th>Restaurant Name</th>
+        <th>Address</th>
+        <th>Distance in Miles</th>
+        <th>Restaurant Type</th>
+        <th>Average Price Score</th>
+        <th>None</th>
+    </tr>
+<!--idk why he had this but it doesn't work without it so-->
+    <tbody id="myTable">
+        
+    </tbody>
+</table>
+
+<script>
+    //the array that is going to be on the table
+    //static tables would be in the braces but since we're getting dynamic tables from the api 
+    //i deleted them
+	var myArray = [            
+        {'menuid':'1', 'menuitem':'Margherita Pizza', 'allergen':'Dairy, Gluten', 'cooktime':'15', 'foodtype':'Italian', 'restaurantid':'162', 'restaurantid':'162', 'restaurantname':'Casa Italia', 'address':'666 Pecan Lane', 'distanceinmiles':'2.1', 'restauranttype':'Italian', 'averagepricescore':'3.4', 'none':'None'},
+        {'menuid':'2', 'menuitem':'Spaghetti', 'allergen':'Gluten', 'cooktime':'15', 'foodtype':'Italian', 'restaurantid':'162', 'restaurantid':'162', 'restaurantname':'Casa Italia', 'address':'666 Pecan Lane', 'distanceinmiles':'2.1', 'restauranttype':'Italian', 'averagepricescore':'3.4', 'none':'None'},
+
+    ]
+
+    //ajax gets information from the api
+    //url is empty because that's where the link to the api goes
+    //use inspect console in the browser to check for the actual name of the array and change
+    //'response' in myArray=response to 'response.data' (data is whatever holds the array)
+
+  /*  $.ajax({
+        method: 'GET',
+        url:'',
+        success: function(response){
+            myArray = response
+            buildTable(myArray)
+            console.log(myArray)
+        }
+    }) */
+
+    //search keyup function
+    //pulls up what you're searching for (value) when you type
+    $('#search-input').on('keyup', function(){
+        var value = $(this).val()
+        console.log('Value:', value)
+        var data = searchTable(value, myArray)
+        buildTable(data)
+    })
+
+    buildTable(myArray)
+
+    //function that takes in the value from above and array
+    function searchTable(value, data){
+        var filteredData = []
+
+        //loop through the array and in every single value that contains whatever the input is
+        for (var i = 0; i < data.length; i++){
+            //change everything to lowercase so case sensitivity doesn't occur
+            value = value.toLowerCase()
+            //name we're filtering by
+            var menuitem = data[i].menuitem.toLowerCase()
+
+            //conditional
+            if (name.includes(value)){
+                filteredData.push(data[i])
+            }
+        }
+
+        return filteredData
+    }
+
+    //builds the table
+	function buildTable(data){
+		var table = document.getElementById('myTable')
+
+        //table gets completely rebuilt each time
+        table.innerHTML = ''
+
+		for (var i = 0; i < data.length; i++){
+            // //create row with temperate literal, allows you 
+            //to make rows without having to constantly concatenate
+            //${data[i].menuid is basically what connects each piece of info to its label
+            //this is the format each element in the array has to be in to use this method
+            //if you have another way you can def use that (watch out for the quotations)
+            //{'menuid':'1', 'menuitem':'Margherita Pizza', 'allergen':'Dairy, Gluten', 'cooktime':'15', 'foodtype':'Italian', 'restaurantid':'162', 'restaurantid':'162', 'restaurantname':'Casa Italia', 'address':'666 Pecan Lane', 'distanceinmiles':'2.1', 'restauranttype':'Italian', 'averagepricescore':'3.4', 'none':'None'},
+			var row = `<tr>
+                            <td>${data[i].menuid}</td>
+                            <td>${data[i].menuitem}</td>
+                            <td>${data[i].allergen}</td>
+                            <td>${data[i].cooktime}</td>
+                            <td>${data[i].foodtype}</td>
+                            <td>${data[i].restaurantid}</td>
+                            <td>${data[i].restaurantid}</td>
+                            <td>${data[i].restaurantname}</td>
+                            <td>${data[i].address}</td>
+                            <td>${data[i].distanceinmiles}</td>
+                            <td>${data[i].restauranttype}</td>
+                            <td>${data[i].averagepricescore}</td>
+                            <td>${data[i].none}</td>
+					  </tr>`
+			table.innerHTML += row
+
+
+		}
+	}
+
+</script>
+
+</html>
