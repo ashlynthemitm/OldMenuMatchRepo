@@ -1,3 +1,5 @@
+/*MIGHT SPONTANEOUSLY COMBUST IF YOU TOUCH ANYTHING BE SUPER CAREFUL*/
+/*IDK WHY SOME THINGS WORK THEY JUST DO*/
 * {
     margin: 0;
     padding: 0;
@@ -329,8 +331,9 @@ header {
     color: #333;
     padding: 20px;
     z-index: 1;
-    min-width: 120px;
+    min-width: 170px;
     font-size: 20px;
+    text-align: left;
   }
 
   .dropdown:hover .dropdown-content {
@@ -388,7 +391,7 @@ header {
 }
 
 .services-col:hover {
-    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.466);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5);
 }
 
 /*Contact Us page*/
@@ -430,27 +433,75 @@ header {
 
 /*Reviews page*/
 .reviews {
-    width: 80%;
-    margin-top: 40%;
+    display: block;
+    position: absolute;
+    width: 40%;
+    margin-top: 55%;
     padding: 50px 0;
+    text-align: center;
 }
 
 .reviews h1 {
+    position: relative;
+    padding: 12px 0;
     font-size: 50px;
     font-weight: 600;
     text-align: center;
     margin: auto;
 }
 
-.reviews-left {
-    flex-basis: 65%;
+.reviews-rating {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 380px;
+    height: 180px;
+    padding: 25px, 50px, 35px;
+    gap: 25px;
+    background: #ff6f61;
+    border-radius: 8px;
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5);
+    left: 15%;
 }
 
-.reviews-left img {
-    width: 100%;
+.reviews-rating input {
+    position: relative;
+    width: 350px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    background-color: #fff;
+    border: 2px solid #333;
+    border-radius: 8px;
+
 }
-.reviews-left h2 {
+
+.review-btn {
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+    background-color: #ffb6b9;
+    border-color: #333;
+    border-radius: 8px;
     color: #333;
-    font-weight: 600;
-    margin: 30px 0;
+    font-size: 18px;
+    padding: 8px 2px;
+    transition: background-color 0.2s;
+}
+
+.reviews-rating .stars {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    padding: 10px;
+    color: #333;
+    font-size: 35px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.stars .ion-icon {
+    color: #ffb6b9;
 }

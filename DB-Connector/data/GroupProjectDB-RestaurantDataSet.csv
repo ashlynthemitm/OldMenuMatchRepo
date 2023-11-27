@@ -1,4 +1,3 @@
-restaurant_id,name,address,distance_miles,restaurant_type,average_price_score
 145,Tasty Bites,123 Main Street,1.5,Italian,4.1
 146,Dragon Wok,456 Elm Avenue,2.8,Chinese,3.7
 147,Salsa Sensations,789 Oak Lane,0.8,Mexican,4.5
@@ -21,7 +20,7 @@ restaurant_id,name,address,distance_miles,restaurant_type,average_price_score
 164,Sakura Garden,888 Birchwood Avenue,2.4,Japanese,4
 165,All-American Diner,999 Aspen Drive,0.7,American,3.7
 166,Taj Mahal,111 Pinecone Road,2.6,Indian,4.2
-167,Le Petit ChÃteau,222 Sprout Lane,1.9,French,4.8
+167,Le Petit Chï¿½teau,222 Sprout Lane,1.9,French,4.8
 168,Sushi Express,333 Blossom Court,1.4,Sushi,3.5
 169,Veggie Delights,444 Sunflower Way,2.2,Vegetarian,4.4
 170,Grill Master,555 Rosewood Lane,0.5,Steakhouse,3.8
