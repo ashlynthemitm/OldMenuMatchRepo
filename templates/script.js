@@ -44,3 +44,13 @@ stars.forEach((star, index1) => {
         });
     });
 });
+
+/* document.onsubmit() {
+    var user_name = document.querySelector(value="user_name")
+    ... var user_password ..
+    var isAdmin = False
+    temp_allergen = []
+    var allergen = document.querySelctor(value="user_allergen") stars.forEach --> temp_allergen
+
+}
+*/ 

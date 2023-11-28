@@ -3,9 +3,27 @@ import string
 from typing import Dict, List, Tuple
 import mysql.connector
 
-from flask import Flask
+from flask import Flask, request
  
 app = Flask(__name__) 
+
+#make a function that calls all the other functions based on the JSON object sent from script
+#in the js function add a variable that holds the method name you want to call, when you get to app.py
+#in the main function you create, use if statements to choose which method to call
+#send the json object to each function and use data.get('insert_var_name', default value)
+#once you do final return it will go to success if you get a response or error if you have no response.
+#so I would do repsonse.records to get the values.
+
+@app.route('call-python-functions')
+def callFunctions():
+    data = request.json
+    if(data.get('function', "") == 'get-all-menus'):
+        return getAllMenus()
+    elif(data.get('function', "") == 'get-all-restaurants'):
+        return getAllRestaurants()
+    
+
+
 
 @app.route('/get-all-menus') 
 def getAllMenus():
@@ -124,7 +142,8 @@ def filterMenusBasedOn(menu_item:string, allergies:List, wait:string, type:strin
 
     cursor.close()
     conn.close()
-    return {'records' : records}
+    response = {'records' : records}
+    return 
 
 @app.route('/get-user-pass') 
 def getUserPassCombo(email:string, passw:string):
