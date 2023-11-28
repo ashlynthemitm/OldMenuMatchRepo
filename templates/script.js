@@ -44,3 +44,43 @@ stars.forEach((star, index1) => {
         });
     });
 });
+
+/* When the user clicks on allergen button,
+toggle between hiding and showing the dropdown content */
+function dropdown() {
+    document.getElementById("dropdown-content").classList.toggle("show");
+}
+  
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+
+/* When the user clicks on food type button,
+toggle between hiding and showing the dropdown content */
+function fooddropdown() {
+    document.getElementById("foodtype-content").classList.toggle("show");
+  }
+  
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.fooddropbtn')) {
+      var dropdowns = document.getElementsByClassName("fooddropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }

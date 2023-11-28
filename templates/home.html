@@ -91,6 +91,46 @@
         <h1>Welcome to MenuMatch</h1>
         <p>Looking to grab a quick bite on campus?</p>
         <p>MenuMatch can help you find a restaurant based on what you want to eat!</p>
+
+        <div class="search-form">
+            <form action="form-handler.php" method="post">
+                <input type="text" name="name" placeholder="Enter your Name" required>
+                <input type="email" name="email" placeholder="Enter Email Address" required>
+                <input type="password" name="password" placeholder="Enter your Password" required>
+                <div class="dropdown">
+                    <button onclick="dropdown()" class="dropbtn">Allergen</button>
+                    <div id="dropdown-content" class="dropdown-content">
+                        <label><input type="checkbox" value="peanut">Nuts</label>
+                        <label><input type="checkbox" value="gluten">Gluten</label>
+                        <label><input type="checkbox" value="dairy">Dairy</label>
+                        <label><input type="checkbox" value="eggs">Eggs</label>
+                        <label><input type="checkbox" value="soy">Soy</label>
+                        <label><input type="checkbox" value="shellfish">Shellfish</label>
+                        <label><input type="checkbox" value="beef">Beef</label>
+                        <label><input type="checkbox" value="wine">Wine</label>
+                        <label><input type="checkbox" value="fish">Fish</label>
+                    </div>
+                </div>
+                <div class="ftype">
+                    <button onclick="fooddropdown()" class="fooddropbtn">Food Type</button> 
+                    <div id="foodtype-content" class="fooddropdown-content">
+                        <label>Nuts</label>
+                        <label>Gluten</label>
+                        <label>Dairy</label>
+                        <label>Eggs</label>
+                        <label>Soy</label>
+                        <label>Shellfish</label>
+                        <label>Beef</label>
+                        <label>Wine</label>
+                        <label>Fish</label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="send-btn">Submit</button>
+
+            </form>
+        </div>
+        <!--
         <div class="search-container">
         <form>
             <input type="text" id="search" placeholder="Search Food...">
@@ -113,6 +153,7 @@
 
             </div>
           </div>
+          -->
     </section>
 
     <script src="script.js"></script>
