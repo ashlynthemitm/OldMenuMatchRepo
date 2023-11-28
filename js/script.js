@@ -35,3 +35,35 @@ stars.forEach((star, index1) => {
         console.log(clicked);
     });
 });
+
+function callPythonFunctions(funName){
+    /*
+    ajax link (paste jquery link at the end of html ) --> in doc --> https://code.jquery.com/jquery-3.6.4.min.js ??
+
+    fetch('/call-python-functions') 
+    .then(response => response.json()) 
+    .then(data => console.log(data)) 
+    .catch(error => console.error(error)); 
+    */
+   
+    $.ajax ({
+        type:'POST',
+        url: '/call-python-functions',
+        contentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify ({
+            user_name: user_name,
+            user_email: user_email,
+            user_password: user_password,
+            function: funName
+            
+            // include all data you need from the form input and or login page
+        }),
+        success: function (response) {
+            console.log(response) // this returns an object reponse 
+        },
+        error: function (error) {
+            console.log(error) // print the error from this call
+
+        }
+    });
+}
