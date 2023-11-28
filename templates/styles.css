@@ -260,7 +260,7 @@ header {
     position: absolute;
     text-align: center;
     margin: 100px 0 50px;
-    top: 30%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -275,6 +275,7 @@ header {
     color: #333;
 }
 
+/*
 .search-container {
     position: relative;
     justify-content: center;
@@ -302,49 +303,144 @@ header {
     padding: 12px 20px;
     transition: background-color 0.2s;
 }
+ 
+*/
 
-.dropdown {
+.search-form {
     position: absolute;
-    display: inline-block;
-    left: -10px;
-    top: 75%;
-    
-  }
+    width: 100%;
+    margin-top: 150px;
+    text-align: center;
+    left: 30px;
+    top: 15%;
+}
 
-  .dropbtn {
-    cursor: pointer;
-    background-color: #ffb6b9;
+.search-form input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #fae5e5;
     border-color: #333;
     border-radius: 8px;
     color: #333;
-    padding: 8px 20px;
+}
+
+/*allergen dropdown*/
+  .dropbtn {
+    width:560px;
+    padding: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #fae5e5;
+    border-color: #333;
+    border-radius: 8px;
+    color: #333;
     font-size: 18px;
+  }
+
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #f7cac9;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
   }
 
   .dropdown-content {
     display: none;
-    position: absolute;
+    position: relative;
     cursor: pointer;
-    background-color: #ffb6b9;
+    width: fit-content;
+    background-color: #fae5e5;
     border-color: #333;
     border-radius: 8px;
     color: #333;
-    padding: 20px;
     z-index: 1;
-    min-width: 170px;
     font-size: 20px;
     text-align: left;
-  }
-
-  .dropdown:hover .dropdown-content {
-    display: block;
+    padding: 2px 12px;
   }
 
   .dropdown-content label {
-    display: block;
+    display: flex;
+    position: relative;
     margin-bottom: 8px;
+    text-decoration: none;
+    padding-left: 30px;
+    text-align: left;
   }
 
+  .dropdown-content label:hover {
+    background-color: #ff6f61;
+  }
+
+  .dropdown-content input[type="checkbox"] {
+    margin-left: -30px;
+    position: relative;
+    vertical-align: middle;
+  }
+
+  /*foodtype dropdown*/
+  .fooddropbtn {
+    width:560px;
+    padding: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #fae5e5;
+    border-color: #333;
+    border-radius: 8px;
+    color: #333;
+    font-size: 18px;
+  }
+
+  .fooddropbtn:hover, .fooddropbtn:focus {
+    background-color: #f7cac9;
+  }
+
+  .fooddropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .fooddropdown-content {
+    display: none;
+    position: relative;
+    cursor: pointer;
+    width: fit-content;
+    background-color: #fae5e5;
+    border-color: #333;
+    border-radius: 8px;
+    color: #333;
+    z-index: 1;
+    font-size: 20px;
+    text-align: left;
+    padding: 2px 12px;
+  }
+
+  .fooddropdown-content label {
+    display: flex;
+    position: relative;
+    margin-bottom: 8px;
+    text-decoration: none;
+    padding-left: 30px;
+    text-align: left;
+  }
+
+  .fooddropdown-content label:hover {
+    background-color: #ff6f61;
+  }
+
+  .fooddropdown-content input[type="checkbox"] {
+    margin-left: -30px;
+    position: relative;
+    vertical-align: middle;
+  }
+
+
+  .show {
+    display: block;
+  }
 
 /* Services page  */
 .services {
