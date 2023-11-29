@@ -21,6 +21,8 @@ def callFunctions():
         return getAllMenus()
     elif(data.get('function', "") == 'get-all-restaurants'):
         return getAllRestaurants()
+    elif(data.get('function', "") == 'filter-restaurants'):
+        return getAllRestaurants()
     
 
 
