@@ -1,11 +1,23 @@
+#!C:\Users\woneo\AppData\Local\Programs\Python\Python38-32\python.exe
 
 import string
 from typing import Dict, List, Tuple
 import mysql.connector
+from flask_cors import CORS, cross_origin
 
-from flask import Flask, request
- 
-app = Flask(__name__) 
+
+from flask import Flask, render_template, request, jsonify
+#from ChatOutput import *
+import os
+
+template_dir = os.path.abspath('./templates')
+static_dir = os.path.abspath('./js')
+
+app = Flask(__name__, static_folder=static_dir, template_folder=template_dir) 
+
+cors = CORS(app, resources={r"/*": {"origins": "*", "methods" : ["GET", "POST"] }})
+app.config['CORS_HEADERS'] = 'Content-Type'
+app.config['CORS_METHODS'] = ["GET", "POST", "DELETE"]
 
 #make a function that calls all the other functions based on the JSON object sent from script
 #in the js function add a variable that holds the method name you want to call, when you get to app.py
@@ -14,20 +26,50 @@ app = Flask(__name__)
 #once you do final return it will go to success if you get a response or error if you have no response.
 #so I would do repsonse.records to get the values.
 
-@app.route('call-python-functions')
-def callFunctions():
+@app.route('/api')
+def index():
+    return render_template('index.html')
+
+
+@app.route('/call-python-user-functions', methods=['POST', 'GET'])
+def callUserFunctions():
     data = request.json
+    print('Received Data: ', data)
+    if(data.get('function', "") == 'get-user-pass'):
+        return jsonify(getUserPassCombo(data.get('data', {})['email'], data.get('data', "")['password']))
+    elif(data.get('function', "") == 'check-user-created'): #remove
+        return jsonify(checkUserCreated(data.get('email', "")))
+    elif(data.get('function', "") == 'create-user'):
+        return jsonify(createUser(data.get('data', {})['name'], data.get('data', {})['email'], data.get('data', "")['password'], ""))
+    elif(data.get('function', "") == 'update-user'):
+        return jsonify(updateUser(data.get('data', {})['email'], data.get('data', "")['allergens']))
+    elif(data.get('function', "") == 'delete-user'):
+        return jsonify(deleteUser(data.get('data', {})['email'], data.get('data', "")['password']))
+    elif(data.get('function', "") == 'set-user-rating'):
+        return jsonify(setUserRestRating(data.get('data', {})['user_id'], data.get('data', "")['rest_id']data.get('data', {})['rating']))
+    elif(data.get('function', "") == 'update-restaurant-rating'): #remove? or add to set user rating
+        return jsonify(updateRestaurantRating()) #reload list of restaurants
+    else:
+         return jsonify({'message': 'Invalid request type'}), 400
+
+@app.route('/call-python-mr-functions', methods=['POST', 'GET'])
+def callMRFunctions():
+    data = request.json
+    print('Received Data: ', data)
     if(data.get('function', "") == 'get-all-menus'):
-        return getAllMenus()
+        return jsonify(getAllMenus())
     elif(data.get('function', "") == 'get-all-restaurants'):
-        return getAllRestaurants()
+        return jsonify(getAllRestaurants())
     elif(data.get('function', "") == 'filter-restaurants'):
-        return getAllRestaurants()
-    
+        return jsonify(filterRestaurantBasedOn(data.get('data', {})['rest_name'], data.get('data', {})['distance'], data.get('data', "")['type'], data.get('data', {})['price']))
+    elif(data.get('function', "") == 'filter-menus'):
+        return jsonify(filterMenusBasedOn(data.get('data', {})['menu_item'], data.get('data', {})['allergens'], data.get('data', "")['wait'], data.get('data', {})['type']))
+    elif(data.get('function', "") == 'update-restaurant-rating'):
+        return jsonify(updateRestaurantRating()) #reload list of restaurants
+    else:
+         return jsonify({'message': 'Invalid request type'}), 400
 
-
-
-@app.route('/get-all-menus') 
+@app.route('/get-all-menus', methods=['POST', 'GET']) 
 def getAllMenus():
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
@@ -51,7 +93,7 @@ def getAllMenus():
     conn.close()
     return {'records' : records}
 
-@app.route('/get-all-restaurants') 
+@app.route('/get-all-restaurants', methods=['POST', 'GET']) 
 def getAllRestaurants():
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
@@ -64,7 +106,7 @@ def getAllRestaurants():
     return {'records': records}
   
 
-@app.route('/filter-restaurants') 
+@app.route('/filter-restaurants', methods=['POST', 'GET']) 
 def filterRestaurantBasedOn(name:string, distance:string, type:string, price:string):
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
@@ -92,7 +134,7 @@ def filterRestaurantBasedOn(name:string, distance:string, type:string, price:str
 
 #filterRestaurantBasedOn("", "", "Foood", "")
   
-@app.route('/filter-menus') 
+@app.route('/filter-menus', methods=['POST', 'GET']) 
 def filterMenusBasedOn(menu_item:string, allergies:List, wait:string, type:string): #takes a list of allergens
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
@@ -145,9 +187,9 @@ def filterMenusBasedOn(menu_item:string, allergies:List, wait:string, type:strin
     cursor.close()
     conn.close()
     response = {'records' : records}
-    return 
+    return response
 
-@app.route('/get-user-pass') 
+@app.route('/get-user-pass', methods=['POST', 'GET']) 
 def getUserPassCombo(email:string, passw:string):
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
@@ -192,7 +234,7 @@ def createUser(name:string, email:string, passw:string, allergens:string):
     cursor = conn.cursor()
     tempBool, record = checkUserCreated(email)
     if(tempBool):
-        return "This email has an account", ""
+        return {'success' : False, 'records' : []}
     
     createquery = "INSERT INTO user (name, email, password, isAdmin, allergens) VALUES (%s, %s, %s, %s, %s)"
     values = (name, email, passw, False, allergens)
@@ -210,7 +252,7 @@ def createUser(name:string, email:string, passw:string, allergens:string):
         return {'success' : False, 'records' : []}
     
 @app.route('/update-user')
-def updateUser(email:string, allergens:List):
+def updateUser(email:string, allergens:string):
     conn = mysql.connector.connect(host="localhost", user="oonyemaobi1", password="#oonyemaobi1*", database="menumatchdb")
     cursor = conn.cursor()
     updatequery = "UPDATE user SET allergens = %s WHERE email = %s"
@@ -296,6 +338,13 @@ def updateRestaurantRating():
         return {'success' : True}
     else:
         return {'success' : False}
+
+if __name__=='__main__':
+    host = os.getenv('IP','0.0.0.0')
+    port = int(os.getenv('PORT',5000))
+    app.secret_key = os.urandom(24)
+    app.run(host=host,port=port)
+
 
 
 

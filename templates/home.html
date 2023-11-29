@@ -25,11 +25,13 @@
         </nav>
     </header>
 
-    <!-- Login and Register-->
+<!--
+
+    Login and Register
     <div class="wrapper">
         <span class="icon-close"><ion-icon name="close-circle"></ion-icon></span>
 
-        <!--Login-->
+        Login
         <div class="form-box login">
             <h2>Login</h2>
             <form action="#">
@@ -47,7 +49,7 @@
                     <label><input type="checkbox">Remember me</label>
                     <a href="#">Forgot Password?</a>
                 </div>
-                <button type="submit" class="btn" onclick="login_submit_click_handler">Login</button>
+                <button type="submit" class="btn" onclick="callPython">Login</button>
                 <div class="login-register">  
                     <p>Don't have an account? <a href="#" class="register-link">Register</a></p>
                 </div>
@@ -55,7 +57,7 @@
             </form>
         </div>
 
-        <!--Register code-->
+        Register code
         <div class="form-box register">
             <h2>Registration</h2>
             <form action="#">
@@ -84,7 +86,7 @@
             
             </form>
         </div>
-    </div>
+    </div> -->
 
     <!--restaurant finder code-->
     <section id="home" class="home">
@@ -94,9 +96,9 @@
 
         <div class="search-form">
             <form action="form-handler.php" method="post">
-                <input type="text" name="name" placeholder="Enter your Name" required>
+                <!--<input type="text" name="name" placeholder="Enter your Name" required>
                 <input type="email" name="email" placeholder="Enter Email Address" required>
-                <input type="password" name="password" placeholder="Enter your Password" required>
+                <input type="password" name="password" placeholder="Enter your Password" required>-->
                 <div class="dropdown">
                     <button onclick="dropdown()" class="dropbtn">Allergen</button>
                     <div id="dropdown-content" class="dropdown-content">
@@ -153,10 +155,12 @@
 
             </div>
           </div>
+          <script src="script.js"></script>
           -->
     </section>
 
-    <script src="script.js"></script>
+    
+    <script type="text/javascript" src="../js/script.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
